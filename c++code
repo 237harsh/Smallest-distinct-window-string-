@@ -1,0 +1,37 @@
+
+Solution{
+    public:
+    int findSubString(string s)
+    {
+          unordered_map<char,int>mp,mp2;
+          for(int i=0;i<s.size();i++)
+          {
+              mp[s[i]]++;
+              
+          }
+          int c=mp.size(),ma=INT_MAX;
+          int i=0,j=0;
+          while(j<s.size())
+          {
+              
+              mp2[s[j]]++;
+             
+              while(mp2.size()==c)//by increamenting i chaek is map size is still equal to c
+              //reduce window size();
+              {
+                  ma=min(ma,j-i+1);
+                  mp2[s[i]]--;
+                  if(mp2[s[i]]==0)
+                  {
+                      mp2.erase(s[i]);
+                  }
+                  i++;
+              }
+              j++;
+          }
+          return ma;
+    }
+};
+
+
+https://practice.geeksforgeeks.org/problems/smallest-distant-window3132/1/?page=2&category[]=Strings&sortBy=submissions#
